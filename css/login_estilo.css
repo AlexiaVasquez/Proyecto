@@ -1,0 +1,80 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family:"Poppins",sans-serif;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+ body::before{
+      content: "";
+      position: fixed; inset: 0;
+      background: url("../imagenes/fondologin2.jpg") center / cover no-repeat fixed;
+      filter: blur(7px);
+      transform: scale(1.08); /* evita bordes duros por el blur */
+      will-change: transform, filter;
+      z-index: 0;
+    }
+   
+body::after{
+      content: "";
+      position: fixed; inset: 0;
+      background: linear-gradient(180deg, rgba(128, 128, 128, 0.35), rgba(234, 230, 230, 0));
+      z-index: 1;
+    }
+    
+    .contenedor_login
+    {
+        width: 420px;
+        background: purple;
+        
+        color:gray;
+        text-align: center;
+        /*Para que el contenido quede arriba de la imagen de fondo*/
+        position: relative;
+        z-index: 2;
+        
+    }
+
+    .contenedor_login .input-box
+    {
+        position: relative;
+        margin: 30px 0;
+        width: 100%;
+        height: 50px;
+    }
+
+    .input-box ,input
+    {
+        width: 100%;
+        height: 100%;
+        color: black;
+        font-size: 16px;
+        background: salmon;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(128, 128, 128, 0.35);
+        border-radius:  40px;
+    }
+
+    .input-box input::placeholder
+    {
+        color: aliceblue;
+
+    }
+
+    .input-box i
+    {
+       position: absolute;
+        right: 20px;
+        top:50%;
+        transform: translateY(-20%);
+        font-size: 20px;
+    }
