@@ -32,41 +32,71 @@ body::after{
     
     .contenedor_login
     {
-        width: 420px;
-        background: purple;
-        
-        color:gray;
+        width: 425px;
+        background: whitesmoke; /* antes 0.35 → ahora más opaco */
         text-align: center;
         /*Para que el contenido quede arriba de la imagen de fondo*/
         position: relative;
         z-index: 2;
-        
+        border: 3px solid blue;
+        border-radius: 19px;
+        padding: 30px 40px;
+       
+    }
+
+    .logo 
+    {
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    align-items: center;     /* centra vertical */
+    height: 170px;           /* define una altura */
+    }
+
+    .logo img 
+    {
+    max-width: 100%;
+    height: auto;
     }
 
     .contenedor_login .input-box
     {
         position: relative;
-        margin: 30px 0;
+        margin: 40px 0;
         width: 100%;
         height: 50px;
+        background: rgba(99, 96, 96, 0.6); /* antes 0.35 → ahora más opaco */
     }
 
-    .input-box ,input
+    .input-box
+    {
+        display:flex;
+        align-items:center;
+        gap:10px;
+        border:2px solid #696868;        /* borde visible */
+        border-radius:999px;              /* redondeado tipo píldora */
+        background: rgba(238, 237, 237, 0.85);  /* color del campo (ajusta opacidad) */
+        overflow:hidden;                  /* recorta esquinas internas */
+        padding:10px 14px;
+    }
+
+    .input-box input
     {
         width: 100%;
         height: 100%;
-        color: black;
         font-size: 16px;
-        background: salmon;
+        background:transparent;
         border: none;
+       /* border: 2px solid rgb(255, 255, 255);*/
         outline: none;
-        border: 2px solid rgba(128, 128, 128, 0.35);
         border-radius:  40px;
+        font-size: 16px;
+        color :white;
+        padding: 8px 40px 10px 22px;
     }
 
     .input-box input::placeholder
     {
-        color: aliceblue;
+        color: rgb(251, 251, 251);
 
     }
 
@@ -75,6 +105,69 @@ body::after{
        position: absolute;
         right: 20px;
         top:50%;
-        transform: translateY(-20%);
+        transform: translateY(-50%);
         font-size: 20px;
+        color:white
     }
+
+    .contenedor_login .boton-iniciar_sesion
+    {
+        width: 100%;
+        height: 45px;
+        background: rgb(216, 119, 1);
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgb(116, 52, 3);
+        cursor: pointer;
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: 600;;
+    }
+
+    
+    
+    /*Al dar clic en unos de los campos el border cambia de 
+    color
+    */
+    .input-box:focus-within
+    {
+    border-color:#edc708;
+    
+    }
+    .contenedor_login .crear_cuenta
+    {
+        font-size: 14.5px;
+        text-align: center;
+        margin-top: 20px 0 15px;  
+    }
+
+    .crear_cuenta p a
+    {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .crear_cuenta p a:hover
+    {
+        text-decoration: underline;
+    }
+
+   
+
+    /*
+    .boton-iniciar_sesion
+    {
+        width: 100%;
+        height: 50px;
+        border:none;
+        outline:none;
+        background: rgb(255, 0, 0);
+        border-radius: 40px;
+        font-size: 18px;
+        color:white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;  
+    }*/
