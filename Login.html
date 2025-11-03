@@ -12,7 +12,8 @@ clases ,estilos y componentes visuales como iconos en este caso
 <link rel="stylesheet" href="css/login_estilo.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    
+    <!-- Carga tu JS al final -->
+<script src="js/Validacion.js"></script>
   </head>
 </head>
 <body >
@@ -20,19 +21,19 @@ clases ,estilos y componentes visuales como iconos en este caso
   <img src="/imagenes/Fondo Loginv2.jpg" srcset="/imagenes/Fondo Loginv2.jpg 1x, ../imagenes/Fondo Loginv2.jpg 2x, /imagenes/Fondo Loginv2.jpg 3x" alt="" />
 </div>
 <div class="contenedor_login">
-    <form action="">
+    <form action="Menu_Principal.html" id="Formulario_Login">
     
       <div class="logo">
       <img src="imagenes/Logo_Pokemon.png" alt="Logo">
       </div>
 
 <div class="input-box">
-    <input type="text" placeholder="Numero de Cuenta" required>
+    <input type="text" id="NumeroCuenta" placeholder="Numero de Cuenta" >
     <i class="glyphicon glyphicon-user"></i>
 </div><!---Input-Box Div 1-->
 
 <div class="input-box">
-    <input type="password" placeholder="PIN" required>
+    <input type="password" id="PIN" placeholder="PIN" >
     <i class="glyphicon glyphicon-lock"></i>
 </div>
 

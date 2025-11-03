@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario Consultar Saldo</title>
+
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/formularios_estilos.css">
+</head>
+<body>
+
+  <div class="container py-4">
+    <!-- Encabezado + botones -->
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+      <h4 class="mb-2 mb-sm-0">Consulta de Saldo</h4>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary rounded-pill" onclick="window.print()">Imprimir</button>
+        <a href="index.html" class="btn btn-danger rounded-pill">Cancelar</a>
+      </div>
+    </div>
+
+    <!-- Resumen de cuenta -->
+    <div class="card shadow-sm border-0 mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-md">
+            <small class="text-muted d-block">Cuenta</small>
+            <strong>012345678901</strong>
+          </div>
+          <div class="col-12 col-md mt-2 mt-md-0">
+            <small class="text-muted d-block">Titular</small>
+            <strong>Nombre del Cliente</strong>
+          </div>
+          <div class="col-12 col-md text-md-right mt-2 mt-md-0">
+            <small class="text-muted d-block">Saldo disponible</small>
+            <span class="h4 text-success mb-0">$150.25</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de movimientos / saldo -->
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-dark text-white">Detalle</div>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover mb-0">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID Transacción</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Descripción</th>
+              <th scope="col" class="text-right">Monto</th>
+              <th scope="col" class="text-right">Saldo Actual</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>02/02/2025</td>
+              <td>Consulta / Movimiento</td>
+              <td class="text-right">—</td>
+              <td class="text-right">$150.25</td>
+            </tr>
+            <!-- Más filas aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

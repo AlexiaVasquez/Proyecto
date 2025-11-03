@@ -1,35 +1,54 @@
 /* Layout base */
-body {
+body 
+{
   background: #f2f5ff;
   padding: 10px;
 }
 
 /* Tarjeta del formulario */
-.formulario {
+.formulario 
+{
   max-width: 500px;
   width: 100%;
-  border: 3px solid #007bff;  /* borde azul de 3px */
+  border: 3px solid #ffaa00;  /* borde azul de 3px */
   border-radius: 18px;
   padding: 30px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  ;
 }
 
 /* Inputs y botones estilo “pill” */
-.form-control {
+.form-control 
+{
   border-radius: 999px;
 }
 
-.btn {
+.btn
+{
   border-radius: 999px;
 }
 
 /* Pills */
-.form-control{ border-radius: 999px; }
-.btn{ border-radius: 999px; }
+.form-control
+{ 
+  border-radius: 999px;
+ }
+
+.btn
+{
+ border-radius: 999px; 
+}
 
 /* Ajustes finos para pantallas muy pequeñas (≤360px) */
-@media (max-width: 360px){
-  .formulario{ padding: 16px; }
-  label, input, button{ font-size: 0.95rem; }
+@media (max-width: 360px)
+{
+  .formulario
+  { 
+    padding: 16px; 
+  
+  }
+
+  label, input, button
+  { 
+    font-size: 0.95rem;
+  }
 }
