@@ -6,22 +6,24 @@
   <title>Menu Principal</title>
 
   <!-- Bootstrap 4 CSS -->
-   <!-- Etiqueta HTML que sirve para enlace al archivo estilo Bootstrap 4 CSS 
-   CDN (Content Delivery Network, o “Red de Entrega de Contenidos”) es una red de servidores distribuidos 
-   por todo el mundo que almacenan y entregan archivos estáticos 
-   —como imágenes, hojas de estilo (CSS) ylibrerías JavaScript
-  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <style>
+    /* Compensa la navbar fixed-top */
+    body { padding-top: 72px; }
+    /* Color personalizado de navbar */
+    .navbar-poke { background-color:#001278; }
+    /* Opcional: mantener enlaces blancos */
+    .navbar-poke .nav-link, .navbar-poke .navbar-brand { color:#fff !important; }
+  </style>
 </head>
 <body class="bg-light">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow"
-       style="background-color:#2A75BB;">
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-poke fixed-top shadow">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center text-white" href="#">
-        <span class="mr-2">⚪️🔴</span>
-        <span class="font-weight-bold">Pokemon Bank</span>
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="imagenes/Logo_Pokemon.png" alt="logo" style="width:150px; margin-left:10px;">
       </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pokeNavbar"
@@ -32,34 +34,51 @@
       <div class="collapse navbar-collapse" id="pokeNavbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link text-white" href="#">Inicio <span class="sr-only">(actual)</span></a>
+            <a class="nav-link" href="#">Inicio <span class="sr-only">(actual)</span></a>
           </li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">Deposito</a></li>
 
-          <li class="nav-item"><a class="nav-link text-white" href="#">Retiros</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">Pagos</a></li>
-         <li class="nav-item"><a class="nav-link text-white" href="#">Consultar Saldo</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="Transaccion_Deposito.html">Depósito</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Transaccion_Retiro.html">Retiros</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Pago de servicios
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="Pago_Energia_Electrica.html">Energía Eléctrica</a>
+              <a class="dropdown-item" href="Pago_Agua_Potable.html">Agua Potable</a>
+              <a class="dropdown-item" href="Pago_Internet.html">Internet</a>
+              <a class="dropdown-item" href="Pago_Telefonia.html">Telefonia</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Consultar_Saldo.html">Consultar Saldo</a>
+          </li>
         </ul>
-      
-        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Separación por navbar fixed-top -->
-  <div style="height:80px;"></div>
-
-  <!-- Jumbotron de ejemplo -->
+  <!-- Jumbotron -->
   <div class="container">
     <div class="jumbotron bg-white shadow-sm">
-      <h1 class="display-4">Bienvenido a Pokemon Bank</h1>
+      <h1 class="display-4">Bienvenido a Pokémon Bank</h1>
       <p class="lead">
-        Administra tus Poké-ahorros, realiza depósitos , retiros, consulta de saldo y pagos de servicios.
+        Administra tus Poke-ahorros, realiza depósitos, retiros, consulta de saldo y pagos de servicios.
       </p>
-    
     </div>
   </div>
 
- 
+  <!-- jQuery, Popper.js y Bootstrap JS (requeridos para el collapse y dropdown) -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
