@@ -1,146 +1,165 @@
-document.addEventListener("DOMContentLoaded", 
-    function()
- {
-  document.getElementById("Formulario_Login").addEventListener('submit', validarFormulario); 
+// =======================================================
+//  VALIDACIÓN FORMULARIO LOGIN
+// =======================================================
+
+// Esperamos a que el HTML esté cargado para poder tomar el formulario
+document.addEventListener("DOMContentLoaded", function() {
+  // Cuando envíen el formulario de login, se ejecuta validarFormulario
+  document
+    .getElementById("Formulario_Login")
+    .addEventListener('submit', validarFormulario); 
 });
 
-function validarFormulario(evento) 
-{
+// Función que valida el formulario de inicio de sesión
+function validarFormulario(evento) {
+  // Evita que el formulario se envíe automáticamente
   evento.preventDefault();
+
+  // Obtenemos el número de cuenta
   var NumeroCuenta = document.getElementById('NumeroCuenta').value;
 
-  if(NumeroCuenta.length == 0)
-     {
+  // Validamos que el número de cuenta no esté vacío
+  if (NumeroCuenta.length == 0) {
     alert('No has escrito el numero de cuenta');
     return;
-     }
+  }
 
+  // Obtenemos el PIN
   var PIN = document.getElementById('PIN').value;
 
-  if (PIN.length > 4 ) 
-    {
+  // Validamos que el PIN no tenga más de 4 dígitos
+  if (PIN.length > 4) {
     alert('El PIN maximo son 4 digitos');
     return;
-    }
+  }
 
-    if (PIN.length < 4 ) 
-    {
+  // Validamos que el PIN no tenga menos de 4 dígitos
+  if (PIN.length < 4) {
     alert('El PIN no debe tener menos de 4 digitos');
     return;
-    }
+  }
+
+  // Si pasa todas las validaciones, se envía el formulario
   this.submit();
 }
 
 /*
-VALIDACION INICIO SESION PARA CAMPO NUMERO CUENTA DIGITAR SOLO NUMEROS
+  VALIDACIÓN INICIO SESIÓN PARA CAMPO NUMERO CUENTA:
+  Solo permitir que se escriban números (0-9)
 */ 
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // 1. Cuando envían el formulario, se llama a la función de validación
-    document
-        .getElementById("Formulario_Login")
-        .addEventListener("submit", validarFormulario);
+  // 1. Vinculamos nuevamente el submit al validador (esto es redundante pero funcional)
+  document
+    .getElementById("Formulario_Login")
+    .addEventListener("submit", validarFormulario);
 
-    // 2. Restricción del campo NPE: solo números 0–9
-    var  numeroCuenta= document.getElementById("NumeroCuenta");
+  // 2. Tomamos el input de Número de Cuenta
+  var numeroCuenta = document.getElementById("NumeroCuenta");
 
-    if (numeroCuenta)
-         {
-        numeroCuenta.addEventListener("keypress", function (e) {
-            var char = e.key; // tecla que se presionó
+  // Si el campo existe en la página
+  if (numeroCuenta) {
+    // Escuchamos el evento keypress (cada vez que presionan una tecla dentro del input)
+    numeroCuenta.addEventListener("keypress", function (e) {
+      var char = e.key; // tecla que se presionó
 
-            // Permitimos las teclas especiales: backspace, delete, flechas, tab, etc.
-            // Para mantenerlo simple, solo bloqueamos lo que no sea número .
-            if (!/[0-9]/.test(char)) {
-                e.preventDefault(); // bloquea la tecla
-            }
-        });
-    }
+      // Solo permitimos números del 0 al 9.
+      // Si lo que se tecleó NO es un número, bloqueamos la tecla.
+      if (!/[0-9]/.test(char)) {
+        e.preventDefault(); // bloquea la tecla
+      }
+    });
+  }
 });
 
 /*
-VALIDACION INICIO SESION PARA CAMPO PIN DIGITAR SOLO NUMEROS
+  VALIDACIÓN INICIO SESIÓN PARA CAMPO PIN:
+  Solo permitir que se escriban números (0-9)
 */ 
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // 1. Cuando envían el formulario, se llama a la función de validación
-    document
-        .getElementById("Formulario_Login")
-        .addEventListener("submit", validarFormulario);
+  // 1. Nuevamente se vincula el submit al validador (otra vez redundante)
+  document
+    .getElementById("Formulario_Login")
+    .addEventListener("submit", validarFormulario);
 
-    // 2. Restricción del campo NPE: solo números 0–9
-    var  PIN= document.getElementById("PIN");
+  // 2. Tomamos el input de PIN
+  var PIN = document.getElementById("PIN");
 
-    if (PIN)
-         {
-        PIN.addEventListener("keypress", function (e) {
-            var char = e.key; // tecla que se presionó
+  if (PIN) {
+    PIN.addEventListener("keypress", function (e) {
+      var char = e.key; // tecla que se presionó
 
-            // Permitimos las teclas especiales: backspace, delete, flechas, tab, etc.
-            // Para mantenerlo simple, solo bloqueamos lo que no sea número .
-            if (!/[0-9]/.test(char)) {
-                e.preventDefault(); // bloquea la tecla
-            }
-        });
-    }
+      // Si la tecla NO es un número del 0 al 9, se bloquea
+      if (!/[0-9]/.test(char)) {
+        e.preventDefault(); // bloquea la tecla
+      }
+    });
+  }
 });
 
-//----------VALIDACION FORMULARIO CREAR CUENTA-------------
-/*
-Este evento (DOMContentLoaded) sucede cuando todas las etiquetas del HTML ya están listas para usarse.
 
+// =======================================================
+//  VALIDACIÓN FORMULARIO CREAR CUENTA
+// =======================================================
+
+/*
+  Este evento (DOMContentLoaded) sucede cuando todas las etiquetas del HTML 
+  ya están listas para usarse.
 */
-
-document.addEventListener("DOMContentLoaded", 
-    function()
- {
-  document.getElementById("Formulario_CrearCuenta").addEventListener('submit', validarFormularioCrearCuenta); 
+document.addEventListener("DOMContentLoaded", function() {
+  // Conectamos el submit del formulario de "Crear Cuenta" a la función validadora
+  document
+    .getElementById("Formulario_CrearCuenta")
+    .addEventListener('submit', validarFormularioCrearCuenta); 
+  
   /*
-  addEventListener('submit', validarFormularioCrearCuenta):se activa cada vez que alguien intenta
-   enviar el formulario.
+    addEventListener('submit', validarFormularioCrearCuenta):
+    se activa cada vez que alguien intenta enviar el formulario.
   */
 });
-function validarFormularioCrearCuenta(evento)
-{
-  evento.preventDefault();
-  var Nombre = document.getElementById('Nombre').value;
 
-  if(Nombre.length == 0)
-     {
+// Función que valida el formulario de "Crear Cuenta"
+function validarFormularioCrearCuenta(evento) {
+  // Evita que el formulario se envíe automáticamente
+  evento.preventDefault();
+
+  // Validamos el campo Nombre
+  var Nombre = document.getElementById('Nombre').value;
+  if (Nombre.length == 0) {
     alert('No has escrito el nombre');
     return;
-     }
+  }
 
+  // Validamos el campo Apellido
   var Apellido = document.getElementById('Apellido').value;
-
-  if(Apellido.length == 0)
-     {
+  if (Apellido.length == 0) {
     alert('No has escrito el apellido');
     return;
-     }
+  }
 
-     var dui= document.getElementById('dui').value;
-     if(dui.length==0)
-     {
-      alert('No has escrito el DUI');
-      return;
-     }  
+  // Validamos el campo DUI
+  var dui = document.getElementById('dui').value;
+  if (dui.length == 0) {
+    alert('No has escrito el DUI');
+    return;
+  }
 
-     var PIN = document.getElementById('PIN').value;
+  // Validamos el PIN para la nueva cuenta
+  var PIN = document.getElementById('PIN').value;
 
-  if (PIN.length > 4 ) 
-    {
+  if (PIN.length > 4) {
     alert('El PIN maximo son 4 digitos');
     return;
-    }
-    if (PIN.length < 4 ) 
-    {
+  }
+
+  if (PIN.length < 4) {
     alert('El PIN no debe tener menos de 4 digitos');
     return;
-    }
+  }
 
-
+  // Si todo está correcto, se envía el formulario
   this.submit();
 }
