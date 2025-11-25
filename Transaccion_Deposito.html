@@ -23,15 +23,13 @@
   -->
   <link rel="stylesheet" href="css/formularios_estilos.css">
 
-  <!-- Carga la librería de SweetAlert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-</head>
-<body>
-  <!-- Contenedor principal con padding vertical 
-  py-4: padding vertical (arriba/abajo) del tamaño 4. 
-  -->
-<div class="container py-4">
+ 
+  </head>
+  <body>
+    <!-- Contenedor principal con padding vertical 
+    py-4: padding vertical (arriba/abajo) del tamaño 4. 
+    -->
+  <div class="container py-4">
 
 
 <!--
@@ -69,7 +67,7 @@ justify-content-center: centra horizontalmente el contenido
           -->
           <h4 class="text-center mb-4 text-primary">Deposito</h4>
 
-          <form>
+          <form id="Formulario_TDeposito">
           <!--
           Esto agrupa un pedacito del formulario, por ejemplo un campo con su etiqueta.  
           -->
@@ -82,39 +80,39 @@ justify-content-center: centra horizontalmente el contenido
               id="nombre": identificador único (debe coincidir con el for del label).
               placeholder="...": texto guía dentro del input.
               -->
-              <input type="date" class="form-control" id="FechaDeposito" placeholder="" required>
+              <input type="date" class="form-control" id="FechaDeposito" placeholder=""  >
             </div>
 
             <div class="form-group">
               <label for="NumeroCuenta">Numero de Cuenta</label>
-              <input type="text" class="form-control" id="NumeroCuentaDeposito" placeholder="Ingresa tu numero de cuenta" required>
+              <input type="text" class="form-control" id="NumeroCuentaDeposito" placeholder="Ingresa tu numero de cuenta"  maxlength="9" minlength="9">
             </div>
 
             <div class="form-group">
               <label for="Concepto">Concepto</label>
-              <input type="text" class="form-control" id="ConceptoDeposito" placeholder="Ingresa el concepto" required>
+              <input type="text" class="form-control" id="ConceptoDeposito" placeholder="Ingresa el concepto"  >
             </div>
 
             <div class="form-group">
               <label for="MontoD">Monto</label>
-              <input type="text" class="form-control" id="MontoDeposito" placeholder="Ingresa tu monto" required>
+              <input type="text" class="form-control" id="MontoDeposito" placeholder="Ingresa tu monto"  >
             </div>
 
 
             <div class="form-group">
               <label for="NumeroTarjetaD">Numero de Tarjeta</label>
-              <input type="text" class="form-control" id="NumeroTarjeta" placeholder="Ingresa tu numero de tarjeta" required>
+              <input type="text" class="form-control" id="NumeroTarjeta" placeholder="Ingresa tu numero de tarjeta" maxlength="12" minlength="12">
             </div>
         <div class="form-row">
           <!-- Edad -->
           <div class="form-group col-12 col-md-6">
               <label for="FechaVencimiento">Fecha Vencimiento</label>
-              <input type="month" class="form-control" id="FechaVencimiento" placeholder="MM/YYYY" required>
+              <input type="month" class="form-control" id="FechaVencimiento" placeholder="MM/YYYY"  >
             </div>
             <br>
             <div class="form-group col-12 col-md-6">
             <label for="CVV_D">CVV</label>
-            <input type="email" class="form-control" id="CVV_Deposito" placeholder="123" required>
+            <input type="text" class="form-control" id="CVV_Deposito" maxlength="3" minlength="3" placeholder="123"  >
           </div>
         </div>
 
@@ -123,87 +121,43 @@ justify-content-center: centra horizontalmente el contenido
             mt-3: deja espacio arriba (margin-top).
             -->
             <div class="form-row mt-3">
+  <div class="col-12">
+    <button type="submit"
+            class="btn btn-primary btn-block"
+            id="btnTransaccion">
+      Realizar Deposito
+    </button>
+  </div>
+</div>
 
-              <!--
-              col-12: ancho completo en pantallas pequeñas.
-              col-md-6: medio ancho en pantallas medianas.
-              mb-2: margen inferior tamaño 2.
-              mb-md-0: sin margen inferior en pantallas medianas.
-              -->
-              <div class="col-12 col-md-6 mb-2 mb-md-0">
+<!-- Fila 2: Imprimir y Cancelar lado a lado en pantallas medianas+ -->
+<div class="form-row mt-2">
+  <div class="col-12 col-md-6 mb-2 mb-md-0">
+    <button type="button"
+            class="btn btn-outline-success btn-block"
+            id="btnGenerarPDF">
+      Imprimir
+    </button>
+  </div>
 
-                <!--
-                btn: botón con estilos Bootstrap.
-                btn-primary: botón con color primario del tema Bootstrap.   
-                btn-block: botón que ocupa todo el ancho del contenedor padre.
-                -->
-                <button type="submit" class="btn btn-primary btn-block">Realizar Deposito</button>
-              </div>
-
-              <!--
-              col-12: ancho completo en pantallas pequeñas.
-              col-md-6: medio ancho en pantallas medianas.
-              mb-2: margen inferior tamaño 2.
-              mb-md-0: sin margen inferior en pantallas medianas.
-              
-              -->
-              <div class="col-12 col-md-6 mb-2 mb-md-0">
-
-                <!--
-                btn: botón con estilos Bootstrap.
-                btn-outline-secondary: botón con un estilo secundario (bordeado y sin fondo).
-                btn-block: botón que ocupa todo el ancho del contenedor padre.
-                -->
-                <button type="reset" class="btn btn-outline-secondary btn-block" id="btnCancelar">Cancelar</button>
-              </div>
-            </div>
+  <div class="col-12 col-md-6">
+    <button type="reset"
+            class="btn btn-outline-secondary btn-block"
+            id="btnCancelar">
+      Cancelar
+    </button>
+  </div>
+</div>
           </form>
         </div>
       </div>
     </div>
   </div>
-<!-- sweet alert -->
-  <script>
-    // Obtenemos referencia al botón Cancelar por su id
-    const btnCancelar = document.getElementById('btnCancelar');
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/AlertaPDF_Deposito.js"></script>
+<script src="js/ValidacionTDeposito.js"></script>
+<script src="js/Transacciones.js"></script>
 
-    // Asignamos el manejador del click
-    btnCancelar.addEventListener('click', function (e) 
-    
-    {
-      // Si el botón estuviera dentro de un <form>, prevenimos envíos/recargas
-      e.preventDefault();
-
-      // Lanzamos la alerta de confirmación
-      Swal.fire({
-        // Título del cuadro de diálogo
-        title: '¿Desea salir al Menu Principal?',
-        // Mensaje breve explicando la consecuencia
-        text: 'Perderás los cambios no guardados.',
-        // Ícono visual del tipo de alerta: 'warning' | 'info' | 'success' | 'error' | 'question'
-        icon: 'warning',
-        // Muestra el botón de cancelar además del de confirmar
-        showCancelButton: true,
-        // Texto del botón de confirmar (acción destructiva en este caso)
-        confirmButtonText: 'Sí',
-        // Texto del botón de cancelar (permanece en la página)
-        cancelButtonText: 'No',
-        // Invierte el orden para que cancelar quede a la izquierda (más natural)
-        reverseButtons: true,
-        // Colores de los botones
-        confirmButtonColor: '#d33',   // rojo 
-        cancelButtonColor: '#3085d6'  // azul
-      })
-      .then((result) => {
-        // 'result.isConfirmed' es true si el usuario presionó "Sí, salir"
-        if (result.isConfirmed) 
-        {
-          // Redirigir a una ruta específica de tu sitio
-          window.location.href = 'Menu_Principal.html';
-      
-        }
-      });
-    });
-  </script>
 </body>
 </html>

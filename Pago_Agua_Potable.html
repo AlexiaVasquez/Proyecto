@@ -1,179 +1,137 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="utf-8">
 
-<!--
-  Le dice al navegador en móviles que el ancho de la página sea igual al ancho del dispositivo 
-  y que empiece con zoom 1. Sin esto, el diseño “responsive” de Bootstrap no funciona bien
----->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Formulario Agua Potable</title>
+    <!--
+      Le dice al navegador en móviles que el ancho de la página sea igual al ancho del dispositivo 
+      y que empiece con zoom 1. Sin esto, el diseño “responsive” de Bootstrap no funciona bien
+    ---->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Formulario Agua Potable</title>
 
-<!-- Etiqueta HTML que sirve para enlace al archivo estilo Bootstrap 4 CSS 
-   CDN (Content Delivery Network, o “Red de Entrega de Contenidos”) es una red de servidores distribuidos 
-   por todo el mundo que almacenan y entregan archivos estáticos 
-   —como imágenes, hojas de estilo (CSS) ylibrerías JavaScript
-  -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  
+    <!-- Etiqueta HTML que sirve para enlace al archivo estilo Bootstrap 4 CSS 
+      CDN (Content Delivery Network, o “Red de Entrega de Contenidos”) es una red de servidores distribuidos 
+      por todo el mundo que almacenan y entregan archivos estáticos 
+      —como imágenes, hojas de estilo (CSS) ylibrerías JavaScript
+      -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      
 
-  <!-- Etiqueta HTML que sirve para vincular hojas de estilo CSS
-  link es la etiqueta html y rel="stylesheet" indica que es una hoja de estilo CSS
-  href indica la ruta del archivo CSS que se va a vincular 
-  -->
-  <link rel="stylesheet" href="css/formularios_estilos.css">
-<!-- Carga la librería de SweetAlert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body>
-  <!-- Contenedor principal con padding vertical 
-  py-4: padding vertical (arriba/abajo) del tamaño 4. 
-  -->
-<div class="container py-4">
+      <!-- Etiqueta HTML que sirve para vincular hojas de estilo CSS
+      link es la etiqueta html y rel="stylesheet" indica que es una hoja de estilo CSS
+      href indica la ruta del archivo CSS que se va a vincular 
+      -->
+      <link rel="stylesheet" href="css/formularios_estilos.css">
+
+      
+    </head>
+    <body>
+      <!-- Contenedor principal con padding vertical 
+      py-4: padding vertical (arriba/abajo) del tamaño 4. 
+      -->
+    <div class="container py-4">
 
 
-<!--
-  row: fila del sistema de grillas de Bootstrap; 
-  alinea columnas internas y elimina el padding lateral de las columnas (gutter).
+    <!--
+      row: fila del sistema de grillas de Bootstrap; 
+      alinea columnas internas y elimina el padding lateral de las columnas (gutter).
 
-justify-content-center: centra horizontalmente el contenido 
-(usa Flexbox).
--->
-    <div class="row justify-content-center">
+    justify-content-center: centra horizontalmente el contenido 
+    (usa Flexbox).
+    -->
+        <div class="row justify-content-center">
 
-      <!-- Ancho responsivo (más ancho en pantallas grandes) -->
-       <!---
-        para crear diseños web adaptables. Cada clase define el ancho de una columna en un tamaño 
-        de pantalla específico:
+          <!-- Ancho responsivo (más ancho en pantallas grandes) -->
+          <!---
+            para crear diseños web adaptables. Cada clase define el ancho de una columna en un tamaño 
+            de pantalla específico:
 
-         col-12 para pantallas pequeñas, 
-         col-sm-10 para pantallas de hasta 10 de 12 columnas, 
-         col-md-8 para pantallas medianas, 
-         col-lg-6 para pantallas grandes y 
-         col-xl-5 para pantallas extragrandes. 
-       -->
-      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
-
-        <!--
-         Código HTML que crea un contenedor (<div>) que representa un formulario (formulario) 
-          y tiene un fondo blanco (bg-white).
-        -->
-        <div class="formulario bg-white">
-
-          <!--
-          text-center: centra el texto.
-          mb-4: margin-bottom tamaño 4.
-          text-primary: color de texto con el color principal del tema Bootstrap.
+            col-12 para pantallas pequeñas, 
+            col-sm-10 para pantallas de hasta 10 de 12 columnas, 
+            col-md-8 para pantallas medianas, 
+            col-lg-6 para pantallas grandes y 
+            col-xl-5 para pantallas extragrandes. 
           -->
-          <h4 class="text-center mb-4 text-primary">Pago de Agua Potable</h4>
+          <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
 
-          <form>
-          <!--
-          Esto agrupa un pedacito del formulario, por ejemplo un campo con su etiqueta.  
-          -->
-            <div class="form-group">
-
-              <label for="FechaPagoA">Fecha</label>
-              <!---
-              type="text": campo de texto de una línea.
-              class="form-control": aplica estilos Bootstrap al input (ancho 100%, padding, bordes, focus).
-              id="nombre": identificador único (debe coincidir con el for del label).
-              placeholder="...": texto guía dentro del input.
-              -->
-              <input type="date" class="form-control" id="FechaPagoAgua" placeholder="" required>
-            </div>
-
-            <div class="form-group">
-              <label for="NumeroNPE_A">Numero NPE</label>
-              <input type="text" class="form-control" id="NumeroNPE_Agua" placeholder="Ingresa el numero NPE" required>
-            </div>
-
-            <div class="form-group">
-              <label for="MontoPago_A">Monto</label>
-              <input type="text" class="form-control" id="MontoPago_Agua" placeholder="Ingresa tu monto" required>
-            </div>
-              <div class="form-row mt-3">
-             <!--
-              col-12: ancho completo en pantallas pequeñas.
-              col-md-6: medio ancho en pantallas medianas.
-              mb-2: margen inferior tamaño 2.
-              mb-md-0: sin margen inferior en pantallas medianas.
-              -->
-              <div class="col-12 col-md-6 mb-2 mb-md-0">
-
-                <!--
-                btn: botón con estilos Bootstrap.
-                btn-primary: botón con color primario del tema Bootstrap.   
-                btn-block: botón que ocupa todo el ancho del contenedor padre.
-                -->
-                <button type="submit" class="btn btn-primary btn-block">Pagar Servicio</button>
-              </div>
+            <!--
+            Código HTML que crea un contenedor (<div>) que representa un formulario (formulario) 
+              y tiene un fondo blanco (bg-white).
+            -->
+            <div class="formulario bg-white">
 
               <!--
-              col-12: ancho completo en pantallas pequeñas.
-              col-md-6: medio ancho en pantallas medianas.
-              mb-2: margen inferior tamaño 2.
-              mb-md-0: sin margen inferior en pantallas medianas.
+              text-center: centra el texto.
+              mb-4: margin-bottom tamaño 4.
+              text-primary: color de texto con el color principal del tema Bootstrap.
               -->
-              <div class="col-12 col-md-6 mb-2 mb-md-0">
+              <h4 class="text-center mb-4 text-primary">Pago de Agua Potable</h4>
 
-                <!--
-                btn: botón con estilos Bootstrap.
-                btn-outline-secondary: botón con un estilo secundario (bordeado y sin fondo).
-                btn-block: botón que ocupa todo el ancho del contenedor padre.
-                -->
-                <button type="reset" class="btn btn-outline-secondary btn-block" id="btnCancelar">Cancelar</button>
-              </div>
-            </div>
-          </form>
+              <form id="Formulario_AguaPotable">
+              <!--
+              Esto agrupa un pedacito del formulario, por ejemplo un campo con su etiqueta.  
+              -->
+                <div class="form-group">
 
-        </div>
+                  <label for="FechaPagoA">Fecha</label>
+                  <!---
+                  type="text": campo de texto de una línea.
+                  class="form-control": aplica estilos Bootstrap al input (ancho 100%, padding, bordes, focus).
+                  id="nombre": identificador único (debe coincidir con el for del label).
+                  placeholder="...": texto guía dentro del input.
+                  -->
+                  <input type="date" class="form-control" id="FechaPagoAgua" placeholder=""  >
+                </div>
+
+                <div class="form-group">
+                  <label for="NumeroNPE_A">Numero NPE</label>
+                  <input type="text" class="form-control" id="NumeroNPE_Agua" placeholder="Ingresa el numero NPE"  >
+                </div>
+
+                <div class="form-group">
+                  <label for="MontoPago_A">Monto</label>
+                  <input type="text" class="form-control" id="MontoPago_Agua" placeholder="Ingresa tu monto"  >
+                </div>
+                  <div class="form-row mt-3">
+      <div class="col-12">
+        <button type="submit"
+                class="btn btn-primary btn-block"
+                id="btnTransaccion">
+          Realizar Pago
+        </button>
       </div>
     </div>
-  </div>
-<!-- sweet alert -->
-  <script>
-    // Obtenemos referencia al botón Cancelar por su id
-    const btnCancelar = document.getElementById('btnCancelar');
 
-    // Asignamos el manejador del click
-    btnCancelar.addEventListener('click', function (e) 
-    
-    {
-      // Si el botón estuviera dentro de un <form>, prevenimos envíos/recargas
-      e.preventDefault();
+    <!-- Fila 2: Imprimir y Cancelar lado a lado en pantallas medianas+ -->
+    <div class="form-row mt-2">
+      <div class="col-12 col-md-6 mb-2 mb-md-0">
+        <button type="button"
+                class="btn btn-outline-success btn-block"
+                id="btnGenerarPDF">
+          Imprimir
+        </button>
+      </div>
 
-      // Lanzamos la alerta de confirmación
-      Swal.fire({
-        // Título del cuadro de diálogo
-        title: '¿Desea salir al Menu Principal?',
-        // Mensaje breve explicando la consecuencia
-        text: 'Perderás los cambios no guardados.',
-        // Ícono visual del tipo de alerta: 'warning' | 'info' | 'success' | 'error' | 'question'
-        icon: 'warning',
-        // Muestra el botón de cancelar además del de confirmar
-        showCancelButton: true,
-        // Texto del botón de confirmar (acción destructiva en este caso)
-        confirmButtonText: 'Sí',
-        // Texto del botón de cancelar (permanece en la página)
-        cancelButtonText: 'No',
-        // Invierte el orden para que cancelar quede a la izquierda (más natural)
-        reverseButtons: true,
-        // Colores de los botones
-        confirmButtonColor: '#d33',   // rojo 
-        cancelButtonColor: '#3085d6'  // azul
-      })
-      .then((result) => {
-        // 'result.isConfirmed' es true si el usuario presionó "Sí, salir"
-        if (result.isConfirmed) 
-        {
-          // Redirigir a una ruta específica de tu sitio
-          window.location.href = 'Menu_Principal.html';
-      
-        }
-      });
-    });
-    </script>
-</body>
-</html>
+      <div class="col-12 col-md-6">
+        <button type="reset"
+                class="btn btn-outline-secondary btn-block"
+                id="btnCancelar">
+          Cancelar
+        </button>
+      </div>
+    </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/AlertaPDF_Agua.js"></script>
+    <script src="js/ValidacionAguaP.js"></script>
+    <script src="js/Transacciones.js"></script>
+
+    </body>
+    </html>

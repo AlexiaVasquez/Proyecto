@@ -22,6 +22,7 @@
   href indica la ruta del archivo CSS que se va a vincular 
   -->
   <link rel="stylesheet" href="css/formularios_estilos.css">
+  <script src="js/ValidacionCrearCuenta.js"></script>
 
 </head>
 <body>
@@ -66,41 +67,39 @@ justify-content-center: centra horizontalmente el contenido
           -->
           <h4 class="text-center mb-4 text-primary">Crear Cuenta</h4>
 
-          <form>
+          <form id="Formulario_CrearCuenta" action="Menu_Principal.html">
           <!--
           Esto agrupa un pedacito del formulario, por ejemplo un campo con su etiqueta.  
           -->
             <div class="form-group">
-
-
-              <label for="nombre">Nombre</label>
+              <label for="nombre" >Nombre</label>
               <!---
               type="text": campo de texto de una línea.
               class="form-control": aplica estilos Bootstrap al input (ancho 100%, padding, bordes, focus).
               id="nombre": identificador único (debe coincidir con el for del label).
               placeholder="...": texto guía dentro del input.
               -->
-              <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" required>
+              <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre"  >
             </div>
-
             <div class="form-group">
               <label for="apellido">Apellido</label>
-              <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido" required>
+              <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido" >
             </div>
 
             <div class="form-group">
-              <label for="edad">Dui</label>
-              <input type="text" class="form-control" id="edad" placeholder="12345678-9" required>
+              <label for="dui">Dui</label>
+              <input type="text" class="form-control" id="dui" placeholder="12345678-9" maxlength="10" pattern="\d{8}-\d"
+              title="El DUI debe tener el formato 12345678-9"> 
             </div>
 
             <div class="form-group">
               <label for="correo">Correo Electrónico</label>
-              <input type="email" class="form-control" id="correo" placeholder="usuario@correo.com" required>
+              <input type="email" class="form-control" id="correo" placeholder="usuario@correo.com"  >
             </div>
 
             <div class="form-group">
               <label for="pin">Nuevo número de PIN</label>
-              <input type="password" class="form-control" id="pin" placeholder="••••••" minlength="4" required>
+              <input type="password" class="form-control" id="pin" placeholder="••••••" minlength="4">
             </div>
             <!--
             form-row: una “fila” para acomodar cosas del formulario.

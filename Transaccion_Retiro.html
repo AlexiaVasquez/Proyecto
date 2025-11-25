@@ -22,11 +22,7 @@
   href indica la ruta del archivo CSS que se va a vincular 
   -->
   <link rel="stylesheet" href="css/formularios_estilos.css">
- <!-- Carga la librería de SweetAlert2  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- jsPDF + autoTable para generar PDF desde HTML -->
-  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+
   <!-- Carga tu JS al final -->
 <script src="js/DatosRetiro.js"></script>
 
@@ -98,106 +94,49 @@ justify-content-center: centra horizontalmente el contenido
               <label for="MontoR">Monto</label>
               <input type="text" class="form-control" id="MontoRetiro" placeholder="Ingresa tu monto" required>
             </div>
-              <div class="form-row mt-3">
-             <!--
-              col-12: ancho completo en pantallas pequeñas.
-              col-md-6: medio ancho en pantallas medianas.
-              mb-2: margen inferior tamaño 2.
-              mb-md-0: sin margen inferior en pantallas medianas.
-              -->
-              <div class="col-12 col-md-6 mb-2 mb-md-0">
+          <div class="form-row mt-3">
+  <div class="col-12">
+    <button type="submit"
+            class="btn btn-primary btn-block"
+            id="btnTransaccion">
+      Realizar Deposito
+    </button>
+  </div>
+</div>
 
-                <!--
-                btn: botón con estilos Bootstrap.
-                btn-primary: botón con color primario del tema Bootstrap.   
-                btn-block: botón que ocupa todo el ancho del contenedor padre.
-                -->
-                <button type="submit" class="btn btn-primary btn-block">Realizar Retiro</button>
-              </div>
+<!-- Fila 2: Imprimir y Cancelar lado a lado en pantallas medianas+ -->
+<div class="form-row mt-2">
+  <div class="col-12 col-md-6 mb-2 mb-md-0">
+    <button type="button"
+            class="btn btn-outline-success btn-block"
+            id="btnGenerarPDF">
+      Imprimir
+    </button>
+  </div>
 
-              <!--
-              col-12: ancho completo en pantallas pequeñas.
-              col-md-6: medio ancho en pantallas medianas.
-              mb-2: margen inferior tamaño 2.
-              mb-md-0: sin margen inferior en pantallas medianas.
-              -->
-              <div class="col-12 col-md-6 mb-2 mb-md-0">
-
-                <!--
-                btn: botón con estilos Bootstrap.
-                btn-outline-secondary: botón con un estilo secundario (bordeado y sin fondo).
-                btn-block: botón que ocupa todo el ancho del contenedor padre.
-                -->
-                <button type="reset" class="btn btn-outline-secondary btn-block" id="btnCancelar">Cancelar</button>
-              </div>
-            </div>
+  <div class="col-12 col-md-6">
+    <button type="reset"
+            class="btn btn-outline-secondary btn-block"
+            id="btnCancelar">
+      Cancelar
+    </button>
+  </div>
+</div>
           </form>
 
         </div>
       </div>
     </div>
   </div>
-<table class="table table-bordered">
-    <thead>
-      <tr>
-       
-        <th>Fecha</th>
-        <th>Concepto</th>
-        <th>Monto</th>
-      </tr>
-    </thead>
-    <tbody id="Informacion_Retiro">
-      
-        
-    </tbody>
-  </table>
+<!-- Carga la librería de SweetAlert2  -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <div class="container pb-4">
-  <button id="btnPdf" class="btn btn-success">Generar PDF</button>
-</div>
+  <!--  Carga la libreria de jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <!-- sweet alert -->
-  <script>
-    // Obtenemos referencia al botón Cancelar por su id
-    const btnCancelar = document.getElementById('btnCancelar');
-
-    // Asignamos el manejador del click
-    btnCancelar.addEventListener('click', function (e) 
-    
-    {
-      // Si el botón estuviera dentro de un <form>, prevenimos envíos/recargas
-      e.preventDefault();
-
-      // Lanzamos la alerta de confirmación
-      Swal.fire({
-        // Título del cuadro de diálogo
-        title: '¿Desea salir al Menu Principal?',
-        // Mensaje breve explicando la consecuencia
-        text: 'Perderás los cambios no guardados.',
-        // Ícono visual del tipo de alerta: 'warning' | 'info' | 'success' | 'error' | 'question'
-        icon: 'warning',
-        // Muestra el botón de cancelar además del de confirmar
-        showCancelButton: true,
-        // Texto del botón de confirmar (acción destructiva en este caso)
-        confirmButtonText: 'Sí',
-        // Texto del botón de cancelar (permanece en la página)
-        cancelButtonText: 'No',
-        // Invierte el orden para que cancelar quede a la izquierda (más natural)
-        reverseButtons: true,
-        // Colores de los botones
-        confirmButtonColor: '#d33',   // rojo 
-        cancelButtonColor: '#3085d6'  // azul
-      })
-      .then((result) => {
-        // 'result.isConfirmed' es true si el usuario presionó "Sí, salir"
-        if (result.isConfirmed) 
-        {
-          // Redirigir a una ruta específica de tu sitio
-          window.location.href = 'Menu_Principal.html';
-      
-        }
-      });
-    });
-  </script>
+  <!--Archivo para las alertas y generar PDF JS -->
+  <script src="js/AlertaPDF_Retiro.js"></script>
+  <script src="js/ValidacionTRetiro.js"></script>
+  <script src="js/Transacciones.js"></script>
 </body>
 </html>
