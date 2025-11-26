@@ -19,27 +19,55 @@ function validarFormularioTelefonia(evento)
 
   if(Fecha.length == 0)
      {
-    alert('No has escrito la fecha');
+   // alert('No has escrito la fecha');
+   Swal.fire({
+        icon: 'error',
+        title: 'Campo vacio',
+        text: 'No has escrito la fecha',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      }
 
 var Numero_CuentaInternet = document.getElementById('NumeroNPE').value; 
     if(Numero_CuentaInternet.length == 0)
      {
-    alert('No has escrito el numero de cuenta NPE');
+   // alert('No has escrito el numero de cuenta NPE');
+   Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el numero de NPE',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      }      
 
 var Monto_Internet = document.getElementById('Monto').value;
     if(Monto_Internet.length == 0)
      {  
-    alert('No has escrito el monto');
+    //alert('No has escrito el monto');
+    Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el monto',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      } 
      
      if(Monto_Internet <= 0.00)
      {  
-    alert('El monto debe ser mayor a 0');
+   // alert('El monto debe ser mayor a 0');
+   Swal.fire({
+        icon: 'error',
+        title: 'Monto incorrecto',
+        text: 'El monto debe ser mayor a 0',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      } 
 

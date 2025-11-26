@@ -20,7 +20,14 @@ function validarFormularioTR(evento)
 
   if(FechaRetiro.length === 0)
   {
-    alert('No has escrito una fecha de retiro');
+    //alert('No has escrito una fecha de retiro');
+    Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito la fecha',
+        confirmButtonText: 'OK'
+   
+     });
     return;
   }
 
@@ -28,7 +35,14 @@ function validarFormularioTR(evento)
 
   if(ConceptoRetiro.length ==0)
   {
-    alert('No has escrito un concepto de retiro');
+   // alert('No has escrito un concepto de retiro');
+   Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el concepto',
+        confirmButtonText: 'OK'
+   
+     });
     return;
   }
 
@@ -36,12 +50,26 @@ function validarFormularioTR(evento)
 
   if(MontoRetiro.length ==0)
   {
-    alert('No has escrito un monto');
+   //alert('No has escrito un monto');
+   Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el monto',
+        confirmButtonText: 'OK'
+   
+     });
     return;
   }
   if(MontoRetiro <= 0.00)
      {  
-    alert('El monto debe ser mayor a 0');
+   // alert('El monto debe ser mayor a 0');
+   Swal.fire({
+        icon: 'error',
+        title: 'Monto incorrecto',
+        text: 'El monto debe ser mayor a 0',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      } 
 

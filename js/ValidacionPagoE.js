@@ -19,7 +19,14 @@ function validarFormularioEnergiaElectrica(evento)
 
   if(Fecha.length == 0)
      {
-    alert('No has escrito la fecha');
+  //  alert('No has escrito la fecha');
+  Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito la fecha',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      }
 
@@ -27,19 +34,40 @@ function validarFormularioEnergiaElectrica(evento)
 var Numero_CuentaLuz = document.getElementById('NumeroNPE_Luz').value;
     if(Numero_CuentaLuz.length == 0)
      {
-    alert('No has escrito el numero de cuenta NPE');
+   // alert('No has escrito el numero de cuenta NPE');
+   Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el numero de NPE',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      }
 var Monto_Luz = document.getElementById('MontoPago_Luz').value;
     if(Monto_Luz.length == 0)
      {  
-    alert('No has escrito el monto');
+  //  alert('No has escrito el monto');
+    Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el monto',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      } 
      
      if(Monto_Luz <= 0.00)
      {  
-    alert('El monto debe ser mayor a 0');
+  // alert('El monto debe ser mayor a 0');
+  Swal.fire({
+        icon: 'error',
+        title: 'Monto Incorrecto',
+        text: 'El monto debe ser mayor a 0',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      } 
 
@@ -93,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var char = e.key; // tecla que se presionó
 
             // Permitimos las teclas especiales: backspace, delete, flechas, tab, etc.
-            // Para mantenerlo simple, solo bloqueamos lo que no sea número ni guion.
+            // Para mantenerlo simple, solo bloqueamos lo que no sea número ni punto.
             if (!/[0-9.]/.test(char)) {
                 e.preventDefault(); // bloquea la tecla
             }

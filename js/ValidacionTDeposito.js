@@ -20,7 +20,14 @@ function validarFormularioTDeposito(evento)
 
   if(FechaDeposito.length == 0)
      {
-    alert('No has escrito la fecha');
+  //  alert('No has escrito la fecha');
+   Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito la fecha',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      }
 
@@ -28,7 +35,14 @@ function validarFormularioTDeposito(evento)
 
   if(NumeroCuentaDeposito.length == 0)
      {
-    alert('No has escrito el numero de cuenta');
+    //alert('No has escrito el numero de cuenta');
+    Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el numero de cuenta',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      }
 
@@ -36,7 +50,14 @@ function validarFormularioTDeposito(evento)
 
      if(ConceptoDeposito.length==0)
      {
-        alert('No has escrito un concepto');
+      //  alert('No has escrito un concepto');
+      Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el concepto',
+        confirmButtonText: 'OK'
+   
+     });
         return;
      }
 
@@ -44,12 +65,26 @@ function validarFormularioTDeposito(evento)
     
      if(MontoDeposito.length==0)
      {
-        alert ('No has escrito el monto del deposito');
+       // alert ('No has escrito el monto del deposito');
+       Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el monto',
+        confirmButtonText: 'OK'
+   
+     });
         return;
      }
      if(MontoDeposito <= 0.00)
      {  
-    alert('El monto debe ser mayor a 0');
+    //alert('El monto debe ser mayor a 0');
+    Swal.fire({
+        icon: 'error',
+        title: 'Monto incorrecto',
+        text: 'El monto debe ser mayor a 0',
+        confirmButtonText: 'OK'
+   
+     });
     return;
      } 
 
@@ -58,7 +93,14 @@ function validarFormularioTDeposito(evento)
 
      if(NumeroTarjeta.length==0)
      {
-        alert ('No has escrito el numero de tarjeta');
+        //alert ('No has escrito el numero de tarjeta');
+          Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el numero de tarjeta',
+        confirmButtonText: 'OK'
+   
+     });
         return;
      }
 
@@ -66,7 +108,14 @@ function validarFormularioTDeposito(evento)
 
      if(FechaVencimiento.length==0)
      {
-        alert ('No has escrito la fecha de vencimiento');
+        //alert ('No has escrito la fecha de vencimiento');
+          Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito la fecha de vecimiento',
+        confirmButtonText: 'OK'
+   
+     });
         return;
      }
 
@@ -74,7 +123,14 @@ function validarFormularioTDeposito(evento)
 
      if(CVV_Deposito.length==0)
      {
-        alert ('No has escrito el CVV');
+        //alert ('No has escrito el CVV');
+          Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el CVV',
+        confirmButtonText: 'OK'
+   
+     });
         return;
      }
 

@@ -15,50 +15,40 @@ document.addEventListener("DOMContentLoaded", function () {
   // 1) Si no existe un saldo guardado, lo inicializa en 500.
   inicializarSaldo();
 
-  // 2) Muestra el saldo
+  // 2) Muestra el saldo en el <span id="saldo"> si existe en la página.
   mostrarSaldo();
 
-  // ========== BOTÓN DE TRANSACCIÓN (DEPÓSITO / RETIRO / PAGOS) ==========
-  // El mismo id="btnTransaccion" se usa en varias pantallas:
-  // - Depósito
-  // - Retiro
-  // - Pago de agua
-  // - Pago de energía
-  // - Pago de internet
-  // - Pago de telefonía
-  // Según qué input exista en la página, decide qué función llamar.
+  // ========== BOTÓN DE TRANSACCIÓN (DEPÓSITO o RETIRO) ==========
+  // El mismo id="btnTransaccion" se usa tanto en la pantalla de Depósito
+  // como en la de Retiro. Según qué campo exista, decide qué hacer.
   const btnTransaccion = document.getElementById("btnTransaccion");
   if (btnTransaccion) {
     btnTransaccion.addEventListener("click", function (event) {
       // Evita que el form recargue la página al hacer click.
       event.preventDefault();
 
-      // Si existe el input de MontoDeposito, estamos en la pantalla de DEPÓSITO
+      // Si existe el input de MontoDeposito, estamos en la página de depósito
       if (document.getElementById("MontoDeposito")) {
         TransaccionDeposito();
         return;
       }
 
-      // Si existe el input de MontoRetiro, estamos en la pantalla de RETIRO
+      // Si existe el input de MontoRetiro, estamos en la página de retiro
       if (document.getElementById("MontoRetiro")) {
         TransaccionRetiro();
         return;
       }
 
-      // Si existe el input de MontoPago_Agua, estamos en PAGO DE AGUA
       if (document.getElementById("MontoPago_Agua")) {
         TransaccionPagoAgua();
         return;
       }
 
-      // Si existe el input de MontoPago_Luz, estamos en PAGO DE ENERGÍA
       if (document.getElementById("MontoPago_Luz")) {
         TransaccionPagoEnergia();
         return;
       }
 
-      // Estas dos condiciones usan el mismo id="Monto", dependiendo del formulario:
-      // INTERNET y TELEFONÍA comparten id, pero cambias la lógica según la pantalla donde uses este archivo.
       if (document.getElementById("Monto")) {
         TransaccionPagoInternet();
         return;
@@ -73,19 +63,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ========== CONSULTA DE SALDO ==========
-
-  // Si existe el formulario de consulta de saldo, conecta su submit con ConsultaSaldo()
+  // Si existe el formulario de consulta, se conecta su submit a ConsultaSaldo().
   const formCon = document.getElementById("Formulario_ConsultaSaldo");
   if (formCon) {
     formCon.addEventListener("submit", ConsultaSaldo);
   }
 
-  // Muestra el saldo disponible en la pagina: SALDO DISPONIBLE en el span de consulta (<span id="saldoDisponible">),
+  // Si existe el span de consulta (<span id="saldoDisponible">),
   // lo llenamos automáticamente al entrar en esa página.
   const spanSaldoConsulta = document.getElementById("saldoDisponible");
   if (spanSaldoConsulta) {
-    // Se llama sin evento, solo para refrescar el texto con el saldo actual
-    ConsultaSaldo();
+    ConsultaSaldo(); // se llama sin evento para solo actualizar el texto
   }
 });
 
@@ -111,7 +99,7 @@ function obtenerSaldo() {
 // Guarda el nuevo saldo en localStorage y actualiza el span general "saldo".
 function actualizarSaldo(nuevoSaldo) {
   localStorage.setItem(saldoInicial, nuevoSaldo.toString());
-  mostrarSaldo(); // Refresca el saldo en pantalla
+  mostrarSaldo();
 }
 
 // Lee el saldo actual y lo escribe dentro del <span id="saldo"> (si existe).
@@ -121,8 +109,7 @@ function mostrarSaldo() {
   const spanSaldo = document.getElementById("saldo");
 
   if (spanSaldo) {
-    // Muestra siempre 2 decimales, estilo monto bancario
-    spanSaldo.textContent = saldo.toFixed(2);
+    spanSaldo.textContent = saldo.toFixed(2); // siempre 2 decimales
   }
 }
 
@@ -178,6 +165,7 @@ function TransaccionDeposito() {
 // =======================================================
 function TransaccionRetiro() {
 
+
   // Tomamos el campo donde se escribió el monto a retirar
   const montoRetiro = document.getElementById("MontoRetiro");
   const valorMontoR = parseFloat(montoRetiro.value);
@@ -229,6 +217,204 @@ function TransaccionRetiro() {
 // =======================================================
 function TransaccionPagoAgua() {
 
-  // Tomamos el campo donde se escribió el monto a pagar
+  // Tomamos el campo donde se escribió el monto a retirar
   const montoPago = document.getElementById("MontoPago_Agua");
-  const valorMont
+  const valorMontoP = parseFloat(montoPago.value);
+
+  // Validación básica: número y mayor que 0
+  if (isNaN(valorMontoP) || valorMontoP <= 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Monto inválido",
+      text: "Ingrese un monto de pago válido mayor que 0."
+    });
+    return;
+  }
+
+  const saldoActual = obtenerSaldo();
+
+  // Validamos que el saldo sea suficiente para el retiro
+  if (valorMontoP > saldoActual) {
+    Swal.fire({
+      icon: "error",
+      title: "Saldo insuficiente",
+      html: `
+        El monto del pago es: <b>$ ${valorMontoP.toFixed(2)}</b><br>
+        pero tu saldo disponible es: <b>$ ${saldoActual.toFixed(2)}</b>.`
+    });
+    return;
+  }
+
+  // Si hay saldo suficiente, calculamos nuevo saldo
+  const nuevoSaldo = saldoActual - valorMontoP;
+
+  // Guardamos el nuevo saldo y actualizamos pantalla
+  actualizarSaldo(nuevoSaldo);
+
+  // Alerta de éxito
+  Swal.fire({
+    icon: "success",
+    title: "Pago realizado",
+    html: `
+      Se pagaron:<b>$ ${valorMontoP.toFixed(2)}</b> correctamente.<br>
+      Nuevo saldo: <b>$ ${nuevoSaldo.toFixed(2)}</b>.`
+  });
+
+}//Termina TransaccionPagoAgua
+
+// =======================================================
+//  PAGO ENERGÍA ELÉCTRICA
+// =======================================================
+function TransaccionPagoEnergia() {
+
+
+  const montoPago = document.getElementById("MontoPago_Luz");
+  const valorMontoP = parseFloat(montoPago.value);
+
+  if (isNaN(valorMontoP) || valorMontoP <= 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Monto inválido",
+      text: "Ingrese un monto de pago válido mayor que 0."
+    });
+    return;
+  }
+
+  const saldoActual = obtenerSaldo();
+
+  // ⚠️ Mismo error aquí: se debe comparar contra valorMontoP
+  if (valorMontoP > saldoActual) {
+    Swal.fire({
+      icon: "error",
+      title: "Saldo insuficiente",
+      html: `
+        El monto del pago es: <b>$ ${valorMontoP.toFixed(2)}</b><br>
+        pero tu saldo disponible es: <b>$ ${saldoActual.toFixed(2)}</b>.`
+    });
+    return;
+  }
+
+  const nuevoSaldo = saldoActual - valorMontoP;
+
+  actualizarSaldo(nuevoSaldo);
+
+  Swal.fire({
+    icon: "success",
+    title: "Pago realizado",
+    html: `
+      Se pagaron:<b>$ ${valorMontoP.toFixed(2)}</b> correctamente.<br>
+      Nuevo saldo: <b>$ ${nuevoSaldo.toFixed(2)}</b>.`
+  });
+}//Termina transaccionPagoEnergia
+
+
+// =======================================================
+//  PAGO INTERNET
+// =======================================================
+function TransaccionPagoInternet() {
+
+  const montoPago = document.getElementById("Monto");
+  const valorMontoP = parseFloat(montoPago.value);
+
+  if (isNaN(valorMontoP) || valorMontoP <= 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Monto inválido",
+      text: "Ingrese un monto de pago válido mayor que 0."
+    });
+    return;
+  }
+
+  const saldoActual = obtenerSaldo();
+
+  // ⚠️ Mismo error aquí: se debe comparar contra valorMontoP
+  if (valorMontoP > saldoActual) {
+    Swal.fire({
+      icon: "error",
+      title: "Saldo insuficiente",
+      html: `
+        El monto del pago es: <b>$ ${valorMontoP.toFixed(2)}</b><br>
+        pero tu saldo disponible es: <b>$ ${saldoActual.toFixed(2)}</b>.`
+    });
+    return;
+  }
+
+  const nuevoSaldo = saldoActual - valorMontoP;
+
+  actualizarSaldo(nuevoSaldo);
+
+  Swal.fire({
+    icon: "success",
+    title: "Pago realizado",
+    html: `
+      Se pagaron:<b>$ ${valorMontoP.toFixed(2)}</b> correctamente.<br>
+      Nuevo saldo: <b>$ ${nuevoSaldo.toFixed(2)}</b>.`
+  });
+}//Termina TransaccionPagoInternet
+
+// =======================================================
+//  PAGO TELEFONIA
+// =======================================================
+function TransaccionPagoTelefonia() {
+
+  const montoPago = document.getElementById("Monto");
+  const valorMontoP = parseFloat(montoPago.value);
+
+  if (isNaN(valorMontoP) || valorMontoP <= 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Monto inválido",
+      text: "Ingrese un monto de pago válido mayor que 0."
+    });
+    return;
+  }
+
+  const saldoActual = obtenerSaldo();
+
+  // ⚠️ Mismo error aquí: se debe comparar contra valorMontoP
+  if (valorMontoP > saldoActual) {
+    Swal.fire({
+      icon: "error",
+      title: "Saldo insuficiente",
+      html: `
+        El monto del pago es: <b>$ ${valorMontoP.toFixed(2)}</b><br>
+        pero tu saldo disponible es: <b>$ ${saldoActual.toFixed(2)}</b>.`
+    });
+    return;
+  }
+
+  const nuevoSaldo = saldoActual - valorMontoP;
+
+  actualizarSaldo(nuevoSaldo);
+
+  Swal.fire({
+    icon: "success",
+    title: "Pago realizado",
+    html: `
+      Se pagaron:<b>$ ${valorMontoP.toFixed(2)}</b> correctamente.<br>
+      Nuevo saldo: <b>$ ${nuevoSaldo.toFixed(2)}</b>.`
+  });
+}//Termina TransaccionPagoInternet
+
+
+// =======================================================
+//   CONSULTA DE SALDO
+//   (para pantallas donde hay un formulario de consulta)
+// =======================================================
+function ConsultaSaldo(event) {
+  // Si viene desde un submit, paramos el comportamiento por defecto
+  if (event) {
+    event.preventDefault();
+  }
+
+  const saldo = obtenerSaldo();
+
+  // Actualizamos el span general, si existe
+  mostrarSaldo();
+
+  // Y también un span específico de consulta, si existe en esa página
+  const spanSaldoConsulta = document.getElementById("saldoDisponible");
+  if (spanSaldoConsulta) {
+    spanSaldoConsulta.textContent = saldo.toFixed(2);
+  }
+}

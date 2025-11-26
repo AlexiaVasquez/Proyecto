@@ -1,165 +1,227 @@
-// =======================================================
-//  VALIDACIÓN FORMULARIO LOGIN
-// =======================================================
-
-// Esperamos a que el HTML esté cargado para poder tomar el formulario
-document.addEventListener("DOMContentLoaded", function() {
-  // Cuando envíen el formulario de login, se ejecuta validarFormulario
-  document
-    .getElementById("Formulario_Login")
-    .addEventListener('submit', validarFormulario); 
+document.addEventListener("DOMContentLoaded", 
+    function()
+ {
+  document.getElementById("Formulario_Login").addEventListener('submit', validarFormulario); 
 });
 
-// Función que valida el formulario de inicio de sesión
-function validarFormulario(evento) {
-  // Evita que el formulario se envíe automáticamente
+function validarFormulario(evento) 
+{
   evento.preventDefault();
-
-  // Obtenemos el número de cuenta
   var NumeroCuenta = document.getElementById('NumeroCuenta').value;
 
-  // Validamos que el número de cuenta no esté vacío
-  if (NumeroCuenta.length == 0) {
-    alert('No has escrito el numero de cuenta');
+  if(NumeroCuenta.length == 0)
+     {
+   // alert('No has escrito el numero de cuenta');
+    Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el numero de cuenta ',
+        confirmButtonText: 'OK'
+   
+     });
     return;
-  }
+    }
 
-  // Obtenemos el PIN
   var PIN = document.getElementById('PIN').value;
 
-  // Validamos que el PIN no tenga más de 4 dígitos
-  if (PIN.length > 4) {
-    alert('El PIN maximo son 4 digitos');
+  if (PIN.length.length==0  ) 
+    {
+    
+    Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el PIN',
+        confirmButtonText: 'OK'
+   
+     });
     return;
-  }
+    }
 
-  // Validamos que el PIN no tenga menos de 4 dígitos
-  if (PIN.length < 4) {
-    alert('El PIN no debe tener menos de 4 digitos');
+  if (PIN.length > 4 ) 
+    {
+    //alert('El PIN maximo son 4 digitos');
+    Swal.fire({
+        icon: 'error',
+        title: 'PIN Incorrecto',
+        text: 'El PIN maximo son 4 digitos ',
+        confirmButtonText: 'OK'
+   
+     });
     return;
-  }
+    }
 
-  // Si pasa todas las validaciones, se envía el formulario
+    if (PIN.length < 4 ) 
+    {
+    //alert('El PIN no debe tener menos de 4 digitos');
+    Swal.fire({
+        icon: 'error',
+        title: 'PIN Incorrecto',
+        text: 'El PIN no debe tener menos de 4 digitos ',
+        confirmButtonText: 'OK'
+   
+     });
+    return;
+    }
   this.submit();
 }
 
 /*
-  VALIDACIÓN INICIO SESIÓN PARA CAMPO NUMERO CUENTA:
-  Solo permitir que se escriban números (0-9)
+VALIDACION INICIO SESION PARA CAMPO NUMERO CUENTA DIGITAR SOLO NUMEROS
 */ 
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // 1. Vinculamos nuevamente el submit al validador (esto es redundante pero funcional)
-  document
-    .getElementById("Formulario_Login")
-    .addEventListener("submit", validarFormulario);
+    // 1. Cuando envían el formulario, se llama a la función de validación
+    document
+        .getElementById("Formulario_Login")
+        .addEventListener("submit", validarFormulario);
 
-  // 2. Tomamos el input de Número de Cuenta
-  var numeroCuenta = document.getElementById("NumeroCuenta");
+    // 2. Restricción del campo NPE: solo números 0–9
+    var  numeroCuenta= document.getElementById("NumeroCuenta");
 
-  // Si el campo existe en la página
-  if (numeroCuenta) {
-    // Escuchamos el evento keypress (cada vez que presionan una tecla dentro del input)
-    numeroCuenta.addEventListener("keypress", function (e) {
-      var char = e.key; // tecla que se presionó
+    if (numeroCuenta)
+         {
+        numeroCuenta.addEventListener("keypress", function (e) {
+            var char = e.key; // tecla que se presionó
 
-      // Solo permitimos números del 0 al 9.
-      // Si lo que se tecleó NO es un número, bloqueamos la tecla.
-      if (!/[0-9]/.test(char)) {
-        e.preventDefault(); // bloquea la tecla
-      }
-    });
-  }
+            // Permitimos las teclas especiales: backspace, delete, flechas, tab, etc.
+            // Para mantenerlo simple, solo bloqueamos lo que no sea número .
+            if (!/[0-9]/.test(char)) {
+                e.preventDefault(); // bloquea la tecla
+            }
+        });
+    }
 });
 
 /*
-  VALIDACIÓN INICIO SESIÓN PARA CAMPO PIN:
-  Solo permitir que se escriban números (0-9)
+VALIDACION INICIO SESION PARA CAMPO PIN DIGITAR SOLO NUMEROS
 */ 
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // 1. Nuevamente se vincula el submit al validador (otra vez redundante)
-  document
-    .getElementById("Formulario_Login")
-    .addEventListener("submit", validarFormulario);
+    // 1. Cuando envían el formulario, se llama a la función de validación
+    document
+        .getElementById("Formulario_Login")
+        .addEventListener("submit", validarFormulario);
 
-  // 2. Tomamos el input de PIN
-  var PIN = document.getElementById("PIN");
+    // 2. Restricción del campo NPE: solo números 0–9
+    var  PIN= document.getElementById("PIN");
 
-  if (PIN) {
-    PIN.addEventListener("keypress", function (e) {
-      var char = e.key; // tecla que se presionó
+    if (PIN)
+         {
+        PIN.addEventListener("keypress", function (e) {
+            var char = e.key; // tecla que se presionó
 
-      // Si la tecla NO es un número del 0 al 9, se bloquea
-      if (!/[0-9]/.test(char)) {
-        e.preventDefault(); // bloquea la tecla
-      }
-    });
-  }
+            // Permitimos las teclas especiales: backspace, delete, flechas, tab, etc.
+            // Para mantenerlo simple, solo bloqueamos lo que no sea número .
+            if (!/[0-9]/.test(char)) {
+                e.preventDefault(); // bloquea la tecla
+            }
+        });
+    }
 });
 
-
-// =======================================================
-//  VALIDACIÓN FORMULARIO CREAR CUENTA
-// =======================================================
-
+//----------VALIDACION FORMULARIO CREAR CUENTA-------------
 /*
-  Este evento (DOMContentLoaded) sucede cuando todas las etiquetas del HTML 
-  ya están listas para usarse.
+Este evento (DOMContentLoaded) sucede cuando todas las etiquetas del HTML ya están listas para usarse.
+
 */
-document.addEventListener("DOMContentLoaded", function() {
-  // Conectamos el submit del formulario de "Crear Cuenta" a la función validadora
-  document
-    .getElementById("Formulario_CrearCuenta")
-    .addEventListener('submit', validarFormularioCrearCuenta); 
-  
+
+document.addEventListener("DOMContentLoaded", 
+    function()
+ {
+  document.getElementById("Formulario_CrearCuenta").addEventListener('submit', validarFormularioCrearCuenta); 
   /*
-    addEventListener('submit', validarFormularioCrearCuenta):
-    se activa cada vez que alguien intenta enviar el formulario.
+  addEventListener('submit', validarFormularioCrearCuenta):se activa cada vez que alguien intenta
+   enviar el formulario.
   */
 });
-
-// Función que valida el formulario de "Crear Cuenta"
-function validarFormularioCrearCuenta(evento) {
-  // Evita que el formulario se envíe automáticamente
+function validarFormularioCrearCuenta(evento)
+{
   evento.preventDefault();
-
-  // Validamos el campo Nombre
   var Nombre = document.getElementById('Nombre').value;
-  if (Nombre.length == 0) {
-    alert('No has escrito el nombre');
-    return;
-  }
 
-  // Validamos el campo Apellido
+  if(Nombre.length == 0)
+     {
+   // alert('No has escrito el nombre');
+   Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el nombre ',
+        confirmButtonText: 'OK'
+   
+     });
+    return;
+     }
+
   var Apellido = document.getElementById('Apellido').value;
-  if (Apellido.length == 0) {
-    alert('No has escrito el apellido');
+
+  if(Apellido.length == 0)
+     {
+    //alert('No has escrito el apellido');
+     Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el apellido',
+        confirmButtonText: 'OK'
+   
+     });
     return;
-  }
+     }
 
-  // Validamos el campo DUI
-  var dui = document.getElementById('dui').value;
-  if (dui.length == 0) {
-    alert('No has escrito el DUI');
+     var dui= document.getElementById('dui').value;
+     if(dui.length==0)
+     {
+     // alert('No has escrito el DUI');
+      Swal.fire({
+        icon: 'error',
+        title: 'Campo Vacio',
+        text: 'No has escrito el DUI',
+        confirmButtonText: 'OK'
+   
+     });
+      return;
+     }  
+
+     var PIN = document.getElementById('PIN').value;
+
+     if (PIN.length==0) 
+    {
+   
+    Swal.fire({
+        icon: 'error',
+        title: 'Digitos',
+        text: 'No has escrito el PIN',
+        confirmButtonText: 'OK'
+   
+     });
     return;
-  }
-
-  // Validamos el PIN para la nueva cuenta
-  var PIN = document.getElementById('PIN').value;
-
-  if (PIN.length > 4) {
-    alert('El PIN maximo son 4 digitos');
+    }
+  if (PIN.length > 4 ) 
+    {
+   // alert('El PIN maximo son 4 digitos');
+   Swal.fire({
+        icon: 'error',
+        title: 'Digitos',
+        text: 'El PIN maximo son 4 digitos',
+        confirmButtonText: 'OK'
+   
+     });
     return;
-  }
-
-  if (PIN.length < 4) {
-    alert('El PIN no debe tener menos de 4 digitos');
+    }
+    if (PIN.length < 4 ) 
+    {
+   // alert('El PIN no debe tener menos de 4 digitos');
+    Swal.fire({
+        icon: 'error',
+        title: 'Digitos',
+        text: 'El PIN no debe tener menos de 4 digitos',
+        confirmButtonText: 'OK'
+   
+     });
     return;
-  }
+    }
 
-  // Si todo está correcto, se envía el formulario
+
   this.submit();
 }
